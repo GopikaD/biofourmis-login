@@ -1,0 +1,56 @@
+<div class="card card-container">
+  <div class="header">
+    <div class="container mt-5">
+      <img class="logo" src="/src/assets/logo-biofourmis.svg" alt="Kiwi standing on oval">
+      <div class="row">
+        <div class="col-4">
+          <h2 class=" header-line">Login</h2>
+        </div>
+        <div class="col-8">
+          <span class="text-font float-right" routerLink="/createpassword" routerLinkActive="active">Forgot Password?</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <form [formGroup]="loginForm" autocomplete="off">
+      <div class="form-group">
+        <label for="emailId">Email Address</label>
+        <input type="text" class="form-control" id="emailId" value="" formControlName="emailId" (keypress)="onSubmit()" [class.filled]="validate.emailId.value"
+          [ngClass]="{ 'is-invalid': isSubmitted && validate.emailId.errors}" maxlength="80" ng-trim="false" placeholder="Enter your registered email here">
+        <div *ngIf="isSubmitted && validate.emailId.errors" class="alert alert-danger mt-1">
+          <div *ngIf="validate.emailId.errors.required">E-Mail is required</div>
+          <div *ngIf="validate.emailId.errors.email || validate.emailId.errors.pattern">
+            Enter valid e-mail address</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input [type]="password" class="form-control" id="password" formControlName="password" [class.filled]="validate.password.value"
+          [ngClass]="{ 'is-invalid': isSubmitted && validate.password.errors}" ng-trim="false" name="password" placeholder="Enter password here">
+        <span (click)="clearPassword()">
+          <i class="fa fa-remove icon-remove field-remove"></i>
+        </span>
+        <span (click)="onClick()">
+          <i class="fa fa-eye field-icon" aria-hidden="true" *ngIf="!show"></i>
+          <i class="fa fa-eye-slash field-icon" aria-hidden="true" *ngIf="show"></i>
+        </span>
+        <div *ngIf="isSubmitted && validate.password.errors" class="alert alert-danger mt-1">
+          <div *ngIf="validate.password.errors.required">password is required</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success mt-4" (click)="onSubmit()">Login</button>
+      <div *ngIf="isLogin" class="alert alert-warning alert-dismissible fade show mt-5" role="alert">
+          <strong>Logged in successfully!</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    </form>
+  </div>
+</div>
+<ng-container *ngIf="isForgotPassowrd">
+  <app-create-password></app-create-password>
+</ng-container>
