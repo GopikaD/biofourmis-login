@@ -50,7 +50,7 @@ export class LoginFormComponent implements OnInit {
     }
   }
   clearPassword() {
-   (document.getElementById("password") as HTMLInputElement).value = '';
+    this.loginForm.controls['password'].setValue(undefined);
   }
 
 }

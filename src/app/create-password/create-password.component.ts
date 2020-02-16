@@ -73,7 +73,7 @@ export class CreatePasswordComponent implements OnInit {
   clearPassword(event) {
     this.isSubmitted = false;
     this.isUpdated = false;
-    (document.getElementById(event) as HTMLInputElement).value = '';
+    this.passwordForm.controls[event].setValue(undefined);
   }
   passwordChange(){
     this.isSubmitted = true;

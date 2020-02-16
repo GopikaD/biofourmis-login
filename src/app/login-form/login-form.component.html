@@ -16,7 +16,7 @@
     <form [formGroup]="loginForm" autocomplete="off">
       <div class="form-group">
         <label for="emailId">Email Address</label>
-        <input type="text" class="form-control" id="emailId" value="" formControlName="emailId" (keypress)="onSubmit()" [class.filled]="validate.emailId.value"
+        <input type="text" class="form-control" id="emailId" value="" formControlName="emailId" (keypress)="onEmailCheck()" [class.filled]="validate.emailId.value"
           [ngClass]="{ 'is-invalid': isSubmitted && validate.emailId.errors}" maxlength="80" ng-trim="false" placeholder="Enter your registered email here">
         <div *ngIf="isSubmitted && validate.emailId.errors" class="alert alert-danger mt-1">
           <div *ngIf="validate.emailId.errors.required">E-Mail is required</div>
